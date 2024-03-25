@@ -1,0 +1,477 @@
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"), url("../fonts/OpenSans-Regular.woff2") format("woff2"), url("../fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-SemiBold"), url("../fonts/OpenSans-SemiBold.woff2") format("woff2"), url("../fonts/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "OpenSans", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.spin {
+  height: 300px;
+  background-color: #ffffff;
+}
+
+.menu {
+  background-color: #ffffff;
+  box-shadow: 0 3px 6px 0 rgba(176, 190, 197, 0.32), 0 9px 27px 0 rgba(176, 190, 197, 0.32);
+}
+.menu__container {
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1406px;
+}
+.menu__content {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+.menu__main {
+  margin-right: 53px;
+}
+.menu__find {
+  flex-basis: 581px;
+  padding: 12px 16px;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  transition: 0.3s;
+}
+.menu__find::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+.menu__find:focus-visible, .menu__find:hover:not(:focus-visible) {
+  border: 1px solid #9873ff;
+}
+
+.clients {
+  padding: 40px 0;
+}
+.clients__container {
+  margin: 0 auto;
+  padding: 0 90px;
+  max-width: 1366px;
+}
+.clients__content {
+  display: flex;
+  flex-direction: column;
+}
+.clients__title {
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #333333;
+}
+.clients__area {
+  margin-bottom: 40px;
+}
+.clients__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.clients__heading {
+  padding: 0 40px 0 20px;
+  padding-right: 40px;
+  padding-bottom: 8px;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: left;
+  color: #b0b0b0;
+}
+.clients__heading:not(:first-child) {
+  padding-left: 0;
+}
+.clients__heading-create, .clients__heading-last {
+  padding-right: 28px;
+}
+.clients__sort {
+  font-weight: 400;
+  font-size: 12px;
+  color: #b0b0b0;
+  transition: 0.3s;
+}
+.clients__sort.up {
+  color: #9873ff;
+}
+.clients__sort.up .clients__sortsvg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.clients__sort.up .clients__sort-alph {
+  opacity: 1;
+}
+.clients__sort.down {
+  color: #9873ff;
+}
+.clients__sort.down .clients__sortsvg {
+  opacity: 1;
+}
+.clients__sort.down .clients__sort-alph {
+  opacity: 1;
+}
+.clients__sort-alph {
+  color: #9873ff;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.clients__sort-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clients__sort:focus-visible, .clients__sort:hover:not(:focus-visible), .clients__sort:active:not(:focus-visible), .clients__sort:active {
+  color: #333333;
+}
+.clients__sort:focus-visible .clients__sortsvg, .clients__sort:hover:not(:focus-visible) .clients__sortsvg, .clients__sort:active:not(:focus-visible) .clients__sortsvg, .clients__sort:active .clients__sortsvg {
+  opacity: 1;
+}
+.clients__sort:focus-visible .clients__sort-alph, .clients__sort:hover:not(:focus-visible) .clients__sort-alph, .clients__sort:active:not(:focus-visible) .clients__sort-alph, .clients__sort:active .clients__sort-alph {
+  opacity: 1;
+}
+.clients__sortsvg {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+.clients__social {
+  display: grid;
+  grid-template-columns: repeat(5, 16px);
+  grid-gap: 7px;
+  width: fit-content;
+}
+.clients__contact {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.clients__contact:focus-visible svg, .clients__contact:hover:not(:focus-visible) svg, .clients__contact:active svg, .clients__contact:active:not(:focus-visible) svg {
+  opacity: 1;
+}
+.clients__contact:focus .clients__tooltip {
+  opacity: 1;
+  transform: translate(calc(-50% + 6px), -50%) scale(1);
+}
+.clients__tooltip {
+  position: absolute;
+  top: -27px;
+  padding: 7px 14px;
+  transform: translate(calc(-50% + 6px), -50%) scale(0);
+  opacity: 0;
+  background-color: #333333;
+  white-space: nowrap;
+  cursor: text;
+  transition: opacity 0.5s;
+}
+.clients__tooltip::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: calc(50% - 9px);
+  border-style: solid;
+  border-width: 14px 10px 0 10px;
+  border-color: #333333 transparent transparent transparent;
+}
+.clients__tooltip-type {
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff;
+}
+.clients__tooltip-type::selection {
+  background: #9873ff;
+}
+.clients__tooltip-type::-moz-selection {
+  background: #9873ff;
+}
+.clients__tooltip-social {
+  font-weight: 400;
+  font-size: 12px;
+  color: #ffffff;
+}
+.clients__tooltip-link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #b89eff;
+}
+.clients__more {
+  font-weight: 600;
+  font-size: 8px;
+  color: #333333;
+  border: 1px solid rgba(152, 115, 255, 0.7);
+  border-radius: 100%;
+  transition: 0.3s;
+}
+.clients__more:focus-visible, .clients__more:hover:not(:focus-visible), .clients__more:active, .clients__more:active:not(:focus-visible) {
+  border-color: #9873ff;
+}
+.clients__contactsvg {
+  transition: 0.3s;
+  opacity: 0.7;
+}
+.clients__contacts {
+  padding-right: 54px;
+}
+.clients__add {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  padding: 13px 27px;
+  width: fit-content;
+  background-color: transparent;
+  border: 1px solid #9873ff;
+  transition: 0.3s;
+}
+.clients__add:focus-visible, .clients__add:hover:not(:focus-visible) {
+  background-color: #b89eff;
+}
+.clients__add:focus-visible .clients__addclient, .clients__add:hover:not(:focus-visible) .clients__addclient, .clients__add:active .clients__addclient, .clients__add:active:not(:focus-visible) .clients__addclient {
+  color: #ffffff;
+}
+.clients__add:focus-visible .clients__addpic, .clients__add:hover:not(:focus-visible) .clients__addpic, .clients__add:active .clients__addpic, .clients__add:active:not(:focus-visible) .clients__addpic {
+  fill: #ffffff;
+}
+.clients__add:active, .clients__add:active:not(:focus-visible) {
+  background-color: #8052ff;
+  border-color: #8052ff;
+}
+.clients__addpic {
+  margin-right: 10px;
+  fill: #9873ff;
+  transition: 0.3s;
+}
+.clients__addclient {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  color: #9873ff;
+  transition: 0.3s;
+}
+.clients__spin {
+  text-align: center;
+}
+.clients__spin svg {
+  animation: rotation 1s ease;
+  animation-iteration-count: infinite;
+}
+
+.client {
+  background-color: #ffffff;
+  height: 60px;
+}
+.client:not(:last-child) {
+  border-bottom: 1px solid #c8c5d1;
+}
+.client__data {
+  padding: 0 40px 0 20px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+}
+.client__data:not(:first-child) {
+  padding-left: 0;
+}
+.client__data-id {
+  font-size: 12px;
+  color: #b0b0b0;
+}
+.client__data-fullname {
+  padding-right: 43px;
+}
+.client__data-hour {
+  margin-left: 6px;
+  color: #b0b0b0;
+}
+.client__data-btns {
+  padding-right: 20px;
+}
+.client__data-socials {
+  padding-right: 50px;
+}
+.client__btns {
+  display: flex;
+}
+.client__btn {
+  display: flex;
+  align-items: center;
+}
+.client__spin {
+  animation: rotation 1s ease infinite;
+}
+.client__change {
+  margin-right: 32px;
+  transition: 0.3s;
+}
+.client__change-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  transition: 0.3s;
+}
+.client__change:focus-visible .client__change-text, .client__change:hover:not(:focus-visible) .client__change-text, .client__change:active:not(:focus-visible) .client__change-text, .client__change:active .client__change-text {
+  color: #9873ff;
+}
+.client__delete-pic {
+  fill: #f06a4d;
+}
+.client__delete-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  transition: 0.3s;
+}
+.client__delete:focus-visible .client__delete-text, .client__delete:hover:not(:focus-visible) .client__delete-text, .client__delete:active:not(:focus-visible) .client__delete-text, .client__delete:active .client__delete-text {
+  color: #f06a4d;
+}
+
+@media (max-width: 1024px) {
+  .menu__container {
+    padding: 0 20px;
+  }
+  .clients__container {
+    padding: 0 20px;
+  }
+  .clients__title {
+    margin-bottom: 23px;
+  }
+  .clients__heading {
+    text-align: left;
+    padding-bottom: 3px;
+  }
+  .clients__sort-status {
+    display: block;
+    text-align: left;
+  }
+  .client__data {
+    padding: 0px 28px 0 20px;
+  }
+  .client__data-fullname {
+    padding-right: 28px;
+  }
+  .client__data-date {
+    padding-right: 30px;
+  }
+  .client__data-last {
+    padding-right: 15px;
+  }
+  .client__data-hour {
+    margin-left: 10px;
+  }
+  .client__data-socials {
+    padding-right: 42px;
+  }
+  .client__data-btns {
+    padding-right: 20px;
+  }
+}
+@media (max-width: 960px) {
+  .clients__heading {
+    padding-right: 0;
+  }
+  .clients__area {
+    overflow: scroll;
+  }
+  .clients__area::-webkit-scrollbar {
+    display: none;
+  }
+  .clients__table {
+    margin: 0 auto;
+    min-width: 728px;
+    max-width: 728px;
+  }
+  .client__data {
+    padding: 0 18px 0 20px;
+  }
+  .client__data-fullname {
+    padding-right: 35px;
+  }
+  .client__data-hour {
+    margin-left: 0;
+    display: block;
+  }
+  .client__data-last {
+    padding-right: 18px;
+  }
+  .client__data-btns {
+    padding-right: 20px;
+  }
+  .client__data-socials {
+    padding-right: 20px;
+  }
+  .client__btns {
+    flex-direction: column;
+  }
+  .client__change {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 576px) {
+  .menu__content {
+    justify-content: center;
+    padding: 7px 0;
+  }
+  .menu__main {
+    margin-right: 0;
+  }
+  .menu__logo {
+    width: 24px;
+    height: 24px;
+  }
+  .menu__find {
+    display: none;
+  }
+  .clients {
+    padding: 31px 0;
+  }
+  .clients__container {
+    padding: 0 10px;
+  }
+  .clients__title {
+    margin-bottom: 17px;
+    font-size: 18px;
+  }
+}

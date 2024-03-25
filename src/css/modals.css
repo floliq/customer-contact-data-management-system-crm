@@ -1,0 +1,315 @@
+.modal {
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s;
+  background-color: rgba(51, 51, 51, 0.6);
+}
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 0 29px;
+  width: 450px;
+  transform: scale(0);
+  background-color: #ffffff;
+  opacity: 0;
+  transition: 0.5s;
+}
+.modal__heading {
+  margin-bottom: 40px;
+  padding: 0 30px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #333333;
+}
+.modal__heading-id {
+  margin-left: 9px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #b0b0b0;
+  opacity: 0;
+  visibility: hidden;
+}
+.modal__close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.modal__message {
+  margin: 0 auto 25px;
+  max-width: 275px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+}
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+.modal__container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 30px;
+  margin-bottom: 35px;
+}
+.modal__container:nth-child(3) {
+  margin-bottom: 25px;
+}
+.modal__input {
+  flex-basis: 390px;
+  padding-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid #c8c5d1;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333333;
+  transition: border-color 0.3s;
+}
+.modal__input-error {
+  border-color: #f06a4d;
+}
+.modal__label {
+  position: absolute;
+  bottom: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #b0b0b0;
+  cursor: text;
+  transition: transform 0.4s;
+}
+.modal__label-requared {
+  color: #9873ff;
+}
+.modal__label-selected {
+  font-size: 10px;
+  transform: translateY(-20px);
+}
+.modal__addphone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 30px 9px;
+  margin-bottom: 17px;
+  background-color: rgba(200, 197, 209, 0.3);
+  transition: padding 0.3s;
+}
+.modal__addphone-opened {
+  padding: 25px 30px;
+}
+.modal__contacts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.modal__contact {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+}
+.modal__contact:last-child {
+  margin-bottom: 25px;
+}
+.modal__select {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.modal__select-head {
+  padding: 10px 12px;
+  width: 123px;
+  background-color: #e7e5eb;
+  border: 1px solid #c8c5d1;
+  font-weight: 400;
+  font-size: 12px;
+  color: #333333;
+}
+.modal__select-head::after {
+  content: url("../img/arrow.svg");
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.modal__select-body {
+  position: absolute;
+  top: 34px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  overflow-y: hidden;
+  background-color: #f4f3f6;
+  transition: max-height 0.3s;
+  z-index: 3;
+}
+.modal__select-opened {
+  max-height: 140px;
+  border: 1px solid #c8c5d1;
+  transition: max-height 0.3s;
+}
+.modal__option {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 28px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #333333;
+  transition: 0.3s;
+}
+.modal__option:hover {
+  background-color: #e7e5eb;
+}
+.modal__value {
+  flex-grow: 1;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid #c8c5d1;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333333;
+}
+.modal__value::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+.modal__value-error {
+  border-color: #f06a4d;
+}
+.modal__del {
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+  background-color: #e7e5eb;
+  border: 1px solid #c8c5d1;
+  transition: 0.3s;
+}
+.modal__del-pic {
+  fill: #b0b0b0;
+  transition: 0.3s;
+}
+.modal__del:focus-visible, .modal__del:hover:not(:focus-visible), .modal__del:active, .modal__del:active:not(:focus-visible) {
+  border-color: #f06a4d;
+}
+.modal__del:focus-visible .modal__del-pic, .modal__del:hover:not(:focus-visible) .modal__del-pic, .modal__del:active, .modal__del:active:not(:focus-visible) .modal__del-pic {
+  fill: #f06a4d;
+}
+.modal__del:focus-visible .clients__tooltip, .modal__del:hover:not(:focus-visible) .clients__tooltip, .modal__del:active, .modal__del:active:not(:focus-visible) .clients__tooltip {
+  transform: translate(calc(-50% + 6px), -50%) scale(1);
+  opacity: 1;
+}
+.modal__addcontact {
+  display: flex;
+  align-items: center;
+}
+.modal__addcontact-pic {
+  margin-right: 5px;
+  fill: #9873ff;
+}
+.modal__addcontact-def {
+  transition: opacity 0.3s;
+}
+.modal__addcontact-hover {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+.modal__addcontact-text {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333333;
+  transition: 0.3s;
+}
+.modal__addcontact-disabled {
+  opacity: 0.5;
+}
+.modal__addcontact:focus-visible .modal__addcontact-text, .modal__addcontact:hover:not(:focus-visible) .modal__addcontact-text, .modal__addcontact:active:not(:focus-visible) .modal__addcontact-text, .modal__addcontact:active .modal__addcontact-text {
+  color: #9873ff;
+}
+.modal__addcontact:focus-visible .modal__addcontact-hover, .modal__addcontact:hover:not(:focus-visible) .modal__addcontact-hover, .modal__addcontact:active:not(:focus-visible) .modal__addcontact-hover, .modal__addcontact:active .modal__addcontact-hover {
+  visibility: visible;
+  opacity: 1;
+}
+.modal__addcontact:focus-visible .modal__addcontact-def, .modal__addcontact:hover:not(:focus-visible) .modal__addcontact-def, .modal__addcontact:active:not(:focus-visible) .modal__addcontact-def, .modal__addcontact:active .modal__addcontact-def {
+  visibility: hidden;
+  opacity: 0;
+}
+.modal__errors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.modal__error {
+  width: fit-content;
+  font-weight: 400;
+  font-size: 10px;
+  color: #f06a4d;
+}
+.modal__save {
+  align-self: center;
+  padding: 12px 35px;
+  margin-bottom: 5px;
+  width: fit-content;
+  background-color: #9873ff;
+  border: 1px solid #9873ff;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  transition: 0.3s ease;
+}
+.modal__save:focus-visible, .modal__save:hover:not(:focus-visible) {
+  background-color: #b89eff;
+  border-color: #b89eff;
+}
+.modal__save:active, .modal__save:active:not(:focus-visible) {
+  background-color: #8052ff;
+  border-color: #8052ff;
+}
+.modal__cancel {
+  align-self: center;
+  width: fit-content;
+  font-weight: 400;
+  font-size: 12px;
+  color: #333333;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+.modal__cancel:focus-visible, .modal__cancel:hover:not(:focus-visible), .modal__cancel:active:not(:focus-visible), .modal__cancel:active .modal__addcontact-def {
+  color: #9873ff;
+}
+
+@media (max-width: 576px) {
+  .modal__content {
+    width: 300px;
+  }
+}
+.opacity {
+  opacity: 1;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.visibility {
+  visibility: visible;
+}
+
+.scale {
+  transform: scale(1);
+}
+
+.hidden {
+  display: none;
+}

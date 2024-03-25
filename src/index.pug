@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Система управления контактными данными клиентов
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="stylesheet", href="css/modals.css")
+  body
+    header.menu
+      .menu__container
+        .menu__content
+          a.menu__main(href="#")
+            svg.menu__logo(width="50" height="50")
+              use(xlink:href="img/sprite.svg#logo")
+          input.menu__find(type="text" placeholder="Введите запрос")
+    main
+      section.clients
+        .clients__container
+          .clients__content
+            h2.clients__title Клиенты
+            .clients__area
+              table.clients__table
+                thead.clients__head
+                  tr.clients__mrow
+                    th.clients__heading.clients__heading-id.up
+                      button.clients__sort.clients__sort-id.up ID
+                        svg.clients__sortsvg(width="12" height="12")
+                          use(xlink:href="img/sprite.svg#arrow_downward")
+                    th.clients__heading.clients__heading-full
+                      button.clients__sort.clients__sort-fullname Фамилия Имя Отчество
+                        svg.clients__sortsvg(width="12" height="12")
+                          use(xlink:href="img/sprite.svg#arrow_downward")
+                        span.clients__sort-alph А-Я
+                    th.clients__heading.clients__heading-create
+                      button.clients__sort.clients__sort-create Дата и время создания
+                        svg.clients__sortsvg(width="12" height="12")
+                          use(xlink:href="img/sprite.svg#arrow_downward")
+                    th.clients__heading.clients__heading-last
+                      button.clients__sort.clients__sort-last Последние изменения
+                        svg.clients__sortsvg(width="12" height="12")
+                          use(xlink:href="img/sprite.svg#arrow_downward")
+                    th.clients__heading.clients__heading-contacts Контакты
+                    th.clients__heading Действия
+                tbody.clients__body
+            button.clients__add
+              svg.clients__addpic(width="22" height="16")
+                use(xlink:href="img/sprite.svg#add")
+              span.clients__addclient Добавить клиента
+  script(src="libs/inputmask.min.js")
+  script(src="libs/popper.min.js")
+  script(src="libs/tippy-bundle.umd.min.js")
+  script(type="module" src="js/script.js")

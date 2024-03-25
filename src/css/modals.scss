@@ -1,0 +1,392 @@
+$firm: #9873ff;
+$light_firm: #b89eff;
+$primary_firm: #8052ff;
+$black: #333333;
+$gray: #c8c5d1;
+$txt_gray: #b0b0b0;
+$red: #f06a4d;
+$orange: #e6b127;
+$green: #e6b127;
+$white: #ffffff;
+$op_color: rgba(51, 51, 51, 0.2);
+$shadow: rgba(176, 190, 197, 0.32);
+$light_gray: #f5f5f5;
+
+.modal {
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s;
+  background-color: rgba(51, 51, 51, 0.6);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0 29px;
+    width: 450px;
+    transform: scale(0);
+    background-color: $white;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  &__heading {
+    margin-bottom: 40px;
+    padding: 0 30px;
+    font-weight: 700;
+    font-size: 18px;
+    color: $black;
+
+    &-id {
+      margin-left: 9px;
+      font-weight: 400;
+      font-size: 12px;
+      color: $txt_gray;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+
+  &__message {
+    margin: 0 auto 25px;
+    max-width: 275px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: $black;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 30px;
+    margin-bottom: 35px;
+    &:nth-child(3) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__input {
+    flex-basis: 390px;
+    padding-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid $gray;
+    font-weight: 600;
+    font-size: 14px;
+    color: $black;
+    transition: border-color 0.3s;
+    &-error {
+      border-color: $red;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 6px;
+    font-weight: 400;
+    font-size: 14px;
+    color: $txt_gray;
+    cursor: text;
+    transition: transform 0.4s;
+    &-requared {
+      color: $firm;
+    }
+    &-selected {
+      font-size: 10px;
+      transform: translateY(-20px);
+    }
+  }
+
+  &__addphone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 30px 9px;
+    margin-bottom: 17px;
+    background-color: rgba(200, 197, 209, 0.3);
+    transition: padding 0.3s;
+
+    &-opened {
+      padding: 25px 30px;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__contact {
+    position: relative;
+    display: flex;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__select {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    &-head {
+      padding: 10px 12px;
+      width: 123px;
+      background-color: #e7e5eb;
+      border: 1px solid $gray;
+      font-weight: 400;
+      font-size: 12px;
+      color: $black;
+
+      &::after {
+        content: url("../img/arrow.svg");
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    &-body {
+      position: absolute;
+      top: 34px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-height: 0;
+      overflow-y: hidden;
+      background-color: #f4f3f6;
+
+      transition: max-height 0.3s;
+      z-index: 3;
+    }
+
+    &-opened {
+      max-height: 140px;
+      border: 1px solid $gray;
+      transition: max-height 0.3s;
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 28px;
+    font-weight: 400;
+    font-size: 12px;
+    color: $black;
+    transition: 0.3s;
+    &:hover {
+      background-color: #e7e5eb;
+    }
+  }
+
+  &__value {
+    flex-grow: 1;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: 1px solid $gray;
+    font-weight: 600;
+    font-size: 14px;
+    color: $black;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      color: $txt_gray;
+    }
+    &-error {
+      border-color: $red;
+    }
+  }
+
+  &__del {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    background-color: #e7e5eb;
+    border: 1px solid $gray;
+    transition: 0.3s;
+
+    &-pic{
+      fill: $txt_gray;
+      transition: 0.3s;
+    }
+
+    &:focus-visible,
+    &:hover:not(:focus-visible),
+    &:active, &:active:not(:focus-visible){
+      border-color: $red;
+    }
+
+    &:focus-visible .modal__del-pic,
+    &:hover:not(:focus-visible) .modal__del-pic,
+    &:active, &:active:not(:focus-visible) .modal__del-pic{
+      fill: $red;
+    }
+
+    &:focus-visible .clients__tooltip,
+    &:hover:not(:focus-visible) .clients__tooltip,
+    &:active, &:active:not(:focus-visible) .clients__tooltip{
+      transform: translate(calc(-50% + 6px),-50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  &__addcontact {
+    display: flex;
+    align-items: center;
+
+    &-pic {
+      margin-right: 5px;
+      fill: $firm;
+    }
+    &-def{
+      transition: opacity 0.3s;
+    }
+
+    &-hover{
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+
+    &-text {
+      font-weight: 600;
+      font-size: 14px;
+      color: $black;
+      transition: 0.3s;
+    }
+    &-disabled {
+      opacity: 0.5;
+    }
+
+    &:focus-visible .modal__addcontact-text,
+    &:hover:not(:focus-visible) .modal__addcontact-text,
+    &:active:not(:focus-visible) .modal__addcontact-text,
+    &:active .modal__addcontact-text{
+      color: $firm;
+    }
+
+    &:focus-visible .modal__addcontact-hover,
+    &:hover:not(:focus-visible) .modal__addcontact-hover,
+    &:active:not(:focus-visible) .modal__addcontact-hover,
+    &:active .modal__addcontact-hover{
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &:focus-visible .modal__addcontact-def,
+    &:hover:not(:focus-visible) .modal__addcontact-def,
+    &:active:not(:focus-visible) .modal__addcontact-def,
+    &:active .modal__addcontact-def{
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  &__errors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &__error {
+    width: fit-content;
+    font-weight: 400;
+    font-size: 10px;
+    color: $red;
+  }
+
+  &__save {
+    align-self: center;
+    padding: 12px 35px;
+    margin-bottom: 5px;
+    width: fit-content;
+    background-color: $firm;
+    border: 1px solid $firm;
+    font-weight: 600;
+    font-size: 14px;
+    color: $white;
+    transition: 0.3s ease;
+
+    &:focus-visible,
+    &:hover:not(:focus-visible) {
+      background-color: $light_firm;
+      border-color: $light_firm;
+    }
+
+    &:active,
+    &:active:not(:focus-visible){
+      background-color: $primary_firm;
+      border-color: $primary_firm;
+    }
+  }
+
+  &__cancel {
+    align-self: center;
+    width: fit-content;
+    font-weight: 400;
+    font-size: 12px;
+    color: $black;
+    text-decoration: underline;
+    transition: 0.3s;
+
+    &:focus-visible,
+    &:hover:not(:focus-visible),
+    &:active:not(:focus-visible),
+    &:active .modal__addcontact-def{
+      color: $firm;
+    }
+  }
+}
+
+@media (max-width:576px){
+  .modal{
+    &__content{
+      width: 300px;
+    }
+  }
+
+}
+
+.opacity {
+  opacity: 1;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.visibility {
+  visibility: visible;
+}
+
+.scale {
+  transform: scale(1);
+}
+
+.hidden {
+  display: none;
+}

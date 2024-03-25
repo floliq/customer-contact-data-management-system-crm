@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система управления контактными данными клиентов</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modals.css">
+  </head>
+  <body>
+    <header class="menu">
+      <div class="menu__container">
+        <div class="menu__content"><a class="menu__main" href="#">
+            <svg class="menu__logo" width="50" height="50">
+              <use xlink:href="img/sprite.svg#logo"></use>
+            </svg></a>
+          <input class="menu__find" type="text" placeholder="Введите запрос">
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="clients">
+        <div class="clients__container">
+          <div class="clients__content">
+            <h2 class="clients__title">Клиенты</h2>
+            <div class="clients__area">
+              <table class="clients__table">
+                <thead class="clients__head">
+                  <tr class="clients__mrow">
+                    <th class="clients__heading clients__heading-id up">
+                      <button class="clients__sort clients__sort-id up">ID
+                        <svg class="clients__sortsvg" width="12" height="12">
+                          <use xlink:href="img/sprite.svg#arrow_downward"></use>
+                        </svg>
+                      </button>
+                    </th>
+                    <th class="clients__heading clients__heading-full">
+                      <button class="clients__sort clients__sort-fullname">Фамилия Имя Отчество
+                        <svg class="clients__sortsvg" width="12" height="12">
+                          <use xlink:href="img/sprite.svg#arrow_downward"></use>
+                        </svg><span class="clients__sort-alph">А-Я</span>
+                      </button>
+                    </th>
+                    <th class="clients__heading clients__heading-create">
+                      <button class="clients__sort clients__sort-create">Дата и время создания
+                        <svg class="clients__sortsvg" width="12" height="12">
+                          <use xlink:href="img/sprite.svg#arrow_downward"></use>
+                        </svg>
+                      </button>
+                    </th>
+                    <th class="clients__heading clients__heading-last">
+                      <button class="clients__sort clients__sort-last">Последние изменения
+                        <svg class="clients__sortsvg" width="12" height="12">
+                          <use xlink:href="img/sprite.svg#arrow_downward"></use>
+                        </svg>
+                      </button>
+                    </th>
+                    <th class="clients__heading clients__heading-contacts">Контакты</th>
+                    <th class="clients__heading">Действия</th>
+                  </tr>
+                </thead>
+                <tbody class="clients__body"></tbody>
+              </table>
+            </div>
+            <button class="clients__add">
+              <svg class="clients__addpic" width="22" height="16">
+                <use xlink:href="img/sprite.svg#add"></use>
+              </svg><span class="clients__addclient">Добавить клиента</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="libs/inputmask.min.js"></script>
+  <script src="libs/popper.min.js"></script>
+  <script src="libs/tippy-bundle.umd.min.js"></script>
+  <script type="module" src="js/script.js"></script>
+</html>

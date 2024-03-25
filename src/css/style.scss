@@ -1,0 +1,603 @@
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("../fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("../fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-SemiBold"),
+    url("../fonts/OpenSans-SemiBold.woff2") format("woff2"),
+    url("../fonts/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+$firm: #9873ff;
+$light_firm: #b89eff;
+$primary_firm: #8052ff;
+$black: #333333;
+$gray: #c8c5d1;
+$txt_gray: #b0b0b0;
+$red: #f06a4d;
+$orange: #e6b127;
+$green: #e6b127;
+$white: #ffffff;
+$op_color: rgba(51, 51, 51, 0.2);
+$shadow: rgba(176, 190, 197, 0.32);
+$light_gray: #f5f5f5;
+
+@mixin backgroundImage(
+  $path,
+  $size: cover,
+  $position: center center,
+  $repeat: no-repeat
+) {
+  background-image: url($path);
+  background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "OpenSans", sans-serif;
+}
+
+body {
+  background-color: $light_gray;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.spin {
+  height: 300px;
+  background-color: $white;
+}
+
+.menu {
+  background-color: $white;
+  box-shadow: 0 3px 6px 0 $shadow, 0 9px 27px 0 $shadow;
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 40px;
+    max-width: 1406px;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  &__main {
+    margin-right: 53px;
+  }
+
+  &__find {
+    flex-basis: 581px;
+    padding: 12px 16px;
+    border: 1px solid rgba(51, 51, 51, 0.2);
+    transition: 0.3s;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      color: $txt_gray;
+    }
+    &:focus-visible,
+    &:hover:not(:focus-visible) {
+      border: 1px solid $firm;
+    }
+  }
+}
+
+.clients {
+  padding: 40px 0;
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 90px;
+    max-width: 1366px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 24px;
+    color: $black;
+  }
+  &__area {
+    margin-bottom: 40px;
+  }
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  &__heading {
+    padding: 0 40px 0 20px;
+    padding-right: 40px;
+    padding-bottom: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+    color: $txt_gray;
+
+    &:not(:first-child) {
+      padding-left: 0;
+    }
+    &-create,
+    &-last {
+      padding-right: 28px;
+    }
+  }
+
+  &__sort {
+    font-weight: 400;
+    font-size: 12px;
+    color: $txt_gray;
+    transition: 0.3s;
+    &.up {
+      color: $firm;
+      & .clients__sortsvg {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+      & .clients__sort-alph {
+        opacity: 1;
+      }
+    }
+    &.down {
+      color: $firm;
+      & .clients__sortsvg {
+        opacity: 1;
+      }
+      & .clients__sort-alph {
+        opacity: 1;
+      }
+    }
+    &-alph {
+      color: $firm;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &:focus-visible,
+    &:hover:not(:focus-visible),
+    &:active:not(:focus-visible),
+    &:active {
+      color: $black;
+      & .clients__sortsvg {
+        opacity: 1;
+      }
+      & .clients__sort-alph{
+        opacity: 1;
+      }
+    }
+  }
+
+  &__sortsvg {
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+
+  &__social {
+    display: grid;
+    grid-template-columns: repeat(5, 16px);
+    grid-gap: 7px;
+    width: fit-content;
+  }
+
+  &__contact {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+
+    &:focus-visible svg,
+    &:hover:not(:focus-visible) svg,
+    &:active svg,
+    &:active:not(:focus-visible) svg {
+      opacity: 1;
+    }
+
+    &:focus .clients__tooltip {
+      opacity: 1;
+      transform: translate(calc(-50% + 6px), -50%) scale(1);
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    top: -27px;
+    padding: 7px 14px;
+    transform: translate(calc(-50% + 6px), -50%) scale(0);
+    opacity: 0;
+    background-color: $black;
+    white-space: nowrap;
+    cursor: text;
+    transition: opacity 0.5s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 25px;
+      left: calc(50% - 9px);
+      border-style: solid;
+      border-width: 14px 10px 0 10px;
+      border-color: $black transparent transparent transparent;
+    }
+
+    &-type {
+      font-weight: 700;
+      font-size: 12px;
+      color: $white;
+
+      &::selection {
+        background: $firm;
+      }
+
+      &::-moz-selection {
+        background: $firm;
+      }
+    }
+
+    &-social {
+      font-weight: 400;
+      font-size: 12px;
+      color: $white;
+    }
+
+    &-link {
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      color: #b89eff;
+    }
+  }
+
+  &__more {
+    font-weight: 600;
+    font-size: 8px;
+    color: $black;
+    border: 1px solid rgba(152, 115, 255, 0.7);
+    border-radius: 100%;
+    transition: 0.3s;
+
+    &:focus-visible,
+    &:hover:not(:focus-visible),
+    &:active,
+    &:active:not(:focus-visible) {
+      border-color: $firm;
+    }
+  }
+
+  &__contactsvg {
+    transition: 0.3s;
+    opacity: 0.7;
+  }
+
+  &__contacts {
+    padding-right: 54px;
+  }
+
+  &__add {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    padding: 13px 27px;
+    width: fit-content;
+    background-color: transparent;
+    border: 1px solid $firm;
+    transition: 0.3s;
+
+    &:focus-visible,
+    &:hover:not(:focus-visible) {
+      background-color: $light_firm;
+    }
+
+    &:focus-visible .clients__addclient,
+    &:hover:not(:focus-visible) .clients__addclient,
+    &:active .clients__addclient,
+    &:active:not(:focus-visible) .clients__addclient {
+      color: $white;
+    }
+
+    &:focus-visible .clients__addpic,
+    &:hover:not(:focus-visible) .clients__addpic,
+    &:active .clients__addpic,
+    &:active:not(:focus-visible) .clients__addpic {
+      fill: $white;
+    }
+
+    &:active,
+    &:active:not(:focus-visible) {
+      background-color: $primary_firm;
+      border-color: $primary_firm;
+    }
+  }
+
+  &__addpic {
+    margin-right: 10px;
+    fill: $firm;
+    transition: 0.3s;
+  }
+
+  &__addclient {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    color: $firm;
+    transition: 0.3s;
+  }
+
+  &__spin {
+    text-align: center;
+    & svg {
+      animation: rotation 1s ease;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.client {
+  background-color: $white;
+  height: 60px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $gray;
+  }
+
+  &__data {
+    padding: 0 40px 0 20px;
+    font-weight: 400;
+    font-size: 14px;
+    color: $black;
+    &:not(:first-child) {
+      padding-left: 0;
+    }
+    &-id {
+      font-size: 12px;
+      color: $txt_gray;
+    }
+    &-fullname {
+      padding-right: 43px;
+    }
+    &-hour {
+      margin-left: 6px;
+      color: $txt_gray;
+    }
+    &-btns {
+      padding-right: 20px;
+    }
+    &-socials {
+      padding-right: 50px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+  }
+
+  &__spin{
+    animation: rotation 1s ease infinite;
+  }
+
+  &__change {
+    margin-right: 32px;
+    transition: 0.3s;
+    &-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: $black;
+      transition: 0.3s;
+    }
+    &:focus-visible &-text,
+    &:hover:not(:focus-visible) &-text,
+    &:active:not(:focus-visible) &-text,
+    &:active &-text {
+      color: $firm;
+    }
+  }
+  &__delete {
+    &-pic{
+      fill: $red;
+    }
+
+    &-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: $black;
+      transition: 0.3s;
+    }
+    &:focus-visible &-text,
+    &:hover:not(:focus-visible) &-text,
+    &:active:not(:focus-visible) &-text,
+    &:active &-text {
+      color: $red;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    &__container {
+      padding: 0 20px;
+    }
+  }
+  .clients {
+    &__container {
+      padding: 0 20px;
+    }
+
+    &__title {
+      margin-bottom: 23px;
+    }
+
+    &__heading {
+      text-align: left;
+      padding-bottom: 3px;
+    }
+    &__sort {
+      &-status {
+        display: block;
+        text-align: left;
+      }
+    }
+  }
+
+  .client {
+    &__data {
+      padding: 0px 28px 0 20px;
+
+      &-fullname {
+        padding-right: 28px;
+      }
+
+      &-date {
+        padding-right: 30px;
+      }
+
+      &-last {
+        padding-right: 15px;
+      }
+
+      &-hour {
+        margin-left: 10px;
+      }
+
+      &-socials {
+        padding-right: 42px;
+      }
+      &-btns {
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .clients {
+    &__heading {
+      padding-right: 0;
+    }
+    &__area {
+      overflow: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &__table {
+      margin: 0 auto;
+      min-width: 728px;
+      max-width: 728px;
+    }
+  }
+  .client {
+    &__data {
+      padding: 0 18px 0 20px;
+      &-fullname {
+        padding-right: 35px;
+      }
+      &-hour {
+        margin-left: 0;
+        display: block;
+      }
+      &-last {
+        padding-right: 18px;
+      }
+
+      &-btns {
+        padding-right: 20px;
+      }
+      &-socials {
+        padding-right: 20px;
+      }
+    }
+    &__btns {
+      flex-direction: column;
+    }
+    &__change {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .menu {
+    &__content {
+      justify-content: center;
+      padding: 7px 0;
+    }
+    &__main {
+      margin-right: 0;
+    }
+    &__logo {
+      width: 24px;
+      height: 24px;
+    }
+    &__find {
+      display: none;
+    }
+  }
+  .clients {
+    padding: 31px 0;
+    &__container {
+      padding: 0 10px;
+    }
+    &__title {
+      margin-bottom: 17px;
+      font-size: 18px;
+    }
+  }
+}
